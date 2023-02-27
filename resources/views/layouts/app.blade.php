@@ -15,8 +15,6 @@
         content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    {{-- <link rel="icon" href="{{ asset('viho') }}/assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('viho') }}/assets/images/favicon.png" type="image/x-icon"> --}}
     <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
     <title>Sistem Informasi Penilaian Kinerja Pegawai</title>
@@ -70,12 +68,12 @@
     <div class="page-wrapper compact-sidebar" id="pageWrapper">
 
         <!-- Page Header Start-->
-        @include('layout.header')
+        @include('layouts.header')
         <!-- Page Header Ends -->
         <!-- Page Body Start-->
         <div class="page-body-wrapper sidebar-icon">
             <!-- Page Sidebar Start-->
-            @include('layout.sidebar')
+            @include('layouts.sidebar')
             <!-- Page Sidebar Ends-->
             <div class="page-body">
                 <!-- Container-fluid starts-->
@@ -83,10 +81,10 @@
                 <!-- Container-fluid Ends-->
             </div>
             <!-- footer start-->
-            @include('layout.footer')
+            @include('layouts.footer')
         </div>
     </div>
-    @include('modal_change_avatar')
+    {{-- @include('modal_change_avatar') --}}
     <!-- latest jquery-->
     <script src="{{ asset('viho') }}/assets/js/jquery-3.5.1.min.js"></script>
     <!-- feather icon js-->
