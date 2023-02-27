@@ -20,6 +20,7 @@ class CreateRanksTable extends Migration
             $table->string("jabatan");
             $table->double("nilai_akhir");
             $table->integer("rank");
+            $table->integer("year");
             $table->timestamps();
         });
     }

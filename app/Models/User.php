@@ -70,4 +70,13 @@ class User extends Authenticatable
             return 'Pegawai';
         }
     }
+
+    public function getAvatarAttribute()
+    {
+        if($this->photo){
+            return $this->photo;
+        } else {
+            return asset('viho/assets/images/dashboard/1.png');
+        }
+    }
 }

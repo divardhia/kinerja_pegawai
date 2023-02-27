@@ -15,6 +15,7 @@ class Rank extends Model
         'jabatan',
         'nilai_akhir',
         'rank',
+        'year'
     ];
 
     public function user()

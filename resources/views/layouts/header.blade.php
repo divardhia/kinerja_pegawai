@@ -6,9 +6,9 @@
             <div class="dark-logo-wrapper"><a href="{{route('home')}}"><img class="img-fluid"
                         src="{{ asset('viho') }}/assets/images/logo/dark-logo.png" alt=""></a></div> --}}
             <div class="logo-wrapper me-2"><a href="{{route('home')}}"><img class="img-fluid"
-                        src="{{ asset('LOGO_SCOMPTEC.png') }}" alt=""></a></div>
+                        src="{{ asset('images/logo-text.png') }}" alt=""></a></div>
             <div class="dark-logo-wrapper me-2"><a href="{{route('home')}}"><img class="img-fluid"
-                        src="{{ asset('LOGO_SCOMPTEC.png') }}" alt=""></a></div>
+                        src="{{ asset('images/logo-text-white.png') }}" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle">
                 </i></div>
         </div>

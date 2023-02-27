@@ -15,7 +15,7 @@ class SettingSeeder extends Seeder
     public function run()
     {
         DB::table('settings')->insert([
-            'name'=> 'Sistem Informasi Pengajuan Cuti',
+            'name'=> 'Sistem Informasi Penilaian Kinerja Pegawai',
             'dark_mode'=> false,
         ]);
     }
