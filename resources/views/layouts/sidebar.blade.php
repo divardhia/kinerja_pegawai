@@ -48,15 +48,15 @@
                     @if (Auth::user()->role == '1' || Auth::user()->role == '2')
                     <li class="dropdown">
                         <a class="nav-link " href={{ Auth::user()->role == '1' ? route('home') : route('home')}}><i
-                                data-feather="box"></i><span>Data Pegawai</span></a>
+                                data-feather="box"></i><span>Pegawai</span></a>
                     </li>
                     @endif
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i
-                            data-feather="box"></i><span>Data Divisi</span></a>
+                            data-feather="box"></i><span>Kriteria dan Bobot</span></a>
                     </li>
                     
-                    <li class="sidebar-main-title">
+                    {{-- <li class="sidebar-main-title">
                         <div>
                             <h6>Daily Report</h6>
                         </div>
@@ -69,14 +69,14 @@
                         <a class="nav-link " href={{ Auth::user()->role == '1' ? route('home') : route('home')}}><i
                                 data-feather="activity"></i><span>Report Daily Pegawai</span></a>
                     </li>
-                    @endif
+                    @endif --}}
 
                     <li class="sidebar-main-title">
                         <div>
-                            <h6>Cuti</h6>
+                            <h6>Kinerja Pegawai</h6>
                         </div>
                     </li>
-                    <li class="dropdown">
+                    {{-- <li class="dropdown">
                         <a class="nav-link " href="{{route('home')}}"><i
                                 data-feather="server"></i><span>Pengajuan Cuti</span></a>
                         <ul class="nav-submenu menu-content" style="display: none;">
@@ -115,23 +115,23 @@
                     @if (Auth::user()->role == "1")
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i class="fas fa-fingerprint me-3"></i><span>Check Fingerprint</span></a>
-                    </li>
+                    </li> --}}
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i
-                            data-feather="box"></i><span>Data Cuti Pegawai</span></a>
+                            data-feather="database"></i><span>Perhitungan</span></a>
                     </li>
                     <li class="dropdown">
-                        <a class="nav-link " href="{{route('home')}}"><i data-feather="file"></i><span>Cetak Rekap Laporan</span></a>
+                        <a class="nav-link " href="{{route('home')}}"><i data-feather="file"></i><span>Cetak Laporan</span></a>
                     </li>
-                    @elseif(Auth::user()->role == "2")
+                    {{-- @elseif(Auth::user()->role == "2")
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i
                             data-feather="box"></i><span>Data Cuti Pegawai</span></a>
                     </li>
                     @endif
                     <li class="dropdown mb-5">
-                        <a class="nav-link " href="{{route('home')}}"><i data-feather="database"></i><span>Jadwal Cuti dan</span><br><span class="ms-4">&nbsp;&nbsp;Libur Nasional</span></a>
-                    </li>
+                        <a class="nav-link " href="{{route('home')}}"><i data-feather="database"></i><span>Hasil Kinerja</span><br><span class="ms-4">&nbsp;&nbsp;Libur Nasional</span></a>
+                    </li> --}}
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
