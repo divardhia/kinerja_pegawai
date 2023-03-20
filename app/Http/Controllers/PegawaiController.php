@@ -16,7 +16,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::with('divisi')->get();
+        $pegawai = Pegawai::all();
         return view('pegawai.index', compact('pegawai'));
     }
 
@@ -103,7 +103,6 @@ class PegawaiController extends Controller
             'nama_belakang' => 'required',
             'jabatan' => 'required',
             'email' => 'required',
-            'password' => 'required',
             'role' => 'required',
         ]);
 

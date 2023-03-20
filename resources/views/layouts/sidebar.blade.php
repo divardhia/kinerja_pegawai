@@ -47,13 +47,13 @@
                     </li>
                     @if (Auth::user()->role == '1' || Auth::user()->role == '2')
                     <li class="dropdown">
-                        <a class="nav-link " href={{ Auth::user()->role == '1' ? route('home') : route('home')}}><i
+                        <a class="nav-link " href={{ Auth::user()->role == '1' ? route('pegawai.index') : route('pegawai.index')}}><i
                                 data-feather="box"></i><span>Pegawai</span></a>
                     </li>
                     @endif
                     <li class="dropdown">
-                        <a class="nav-link " href={{route('home')}}><i
-                            data-feather="box"></i><span>Kriteria dan Bobot</span></a>
+                        <a class="nav-link " href={{route('bobot.edit')}}><i
+                            data-feather="box"></i><span>Edit Bobot</span></a>
                     </li>
                     
                     {{-- <li class="sidebar-main-title">
@@ -116,6 +116,10 @@
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i class="fas fa-fingerprint me-3"></i><span>Check Fingerprint</span></a>
                     </li> --}}
+                    <li class="dropdown">
+                        <a class="nav-link " href={{route('home')}}><i
+                            data-feather="database"></i><span>Penilaian</span></a>
+                    </li>
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i
                             data-feather="database"></i><span>Perhitungan</span></a>
