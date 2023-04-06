@@ -3,6 +3,7 @@
 use App\Http\Controllers\BobotController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PenilaianController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::resource('/pegawai', PegawaiController::class);
 // edit bobot
 Route::get('/bobot', [BobotController::class, 'edit'])->name('bobot.edit');
 Route::post('/bobot/update', [BobotController::class, 'update'])->name('bobot.update');
+
+// penilaian
+Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
 
 Route::get('/', function () {
     return redirect()->route('login');

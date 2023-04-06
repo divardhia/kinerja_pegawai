@@ -11,9 +11,9 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><b>Nama Depan: </b>{{ $pegawai->nama_depan }}</li>
                             <li class="list-group-item"><b>Nama Belakang: </b>{{ $pegawai->nama_belakang }}</li>
-                            <li class="list-group-item"><b>Jabatan: </b>{{ $pegawai->jabatan }}</li>
                             <li class="list-group-item"><b>Nama Lengkap: </b>{{ $pegawai->nama_depan }}
                                 {{ $pegawai->nama_belakang }}</li>
+                            <li class="list-group-item"><b>Jabatan: </b>{{ $pegawai->jabatan }}</li>
                             <li class="list-group-item"><b>Role: </b>
                                 @if ($pegawai->user->role == '1')
                                     Admin

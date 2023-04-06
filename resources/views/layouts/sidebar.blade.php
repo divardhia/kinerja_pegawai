@@ -117,7 +117,7 @@
                         <a class="nav-link " href={{route('home')}}><i class="fas fa-fingerprint me-3"></i><span>Check Fingerprint</span></a>
                     </li> --}}
                     <li class="dropdown">
-                        <a class="nav-link " href={{route('home')}}><i
+                        <a class="nav-link " href={{route('penilaian.index')}}><i
                             data-feather="database"></i><span>Penilaian</span></a>
                     </li>
                     <li class="dropdown">

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 
 class BobotController extends Controller
 {
+
     public function edit()
     {
         $kriteria = Kriteria::all();
@@ -24,4 +26,5 @@ class BobotController extends Controller
         return redirect()->route('bobot.edit')
             ->with('success', 'Bobot berhasil diupdate');
     }
+
 }
