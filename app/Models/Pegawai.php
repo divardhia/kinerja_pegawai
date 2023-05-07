@@ -34,6 +34,11 @@ class Pegawai extends Model
 
     public function kegiatan()
     {
-        return $this->hasMany(Kegiatan::class, 'id_pegawai', 'id');
+        return $this->belongsToMany(Kegiatan::class, 'pegawai_kegiatans', 'id_pegawai', 'id_kegiatan');
+    }
+
+    public function pegawai_kegiatan()
+    {
+        return $this->hasMany(PegawaiKegiatan::class, 'id_pegawai', 'id');
     }
 }

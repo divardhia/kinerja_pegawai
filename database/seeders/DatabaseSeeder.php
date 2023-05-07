@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PegawaiSeeder::class);
         $this->call(KriteriaSeeder::class);
         $this->call(SettingSeeder::class);
+        $this->call(KegiatanSeeder::class);
     }
 }

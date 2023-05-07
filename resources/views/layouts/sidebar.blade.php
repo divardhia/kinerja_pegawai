@@ -50,6 +50,10 @@
                         <a class="nav-link " href={{ Auth::user()->role == '1' ? route('pegawai.index') : route('pegawai.index')}}><i
                                 data-feather="box"></i><span>Pegawai</span></a>
                     </li>
+                    <li class="dropdown">
+                        <a class="nav-link " href={{ Auth::user()->role == '1' ? route('pegawai.index') : route('pegawai.index')}}><i
+                                data-feather="box"></i><span>Kegiatan</span></a>
+                    </li>
                     @endif
                     <li class="dropdown">
                         <a class="nav-link " href={{route('bobot.edit')}}><i

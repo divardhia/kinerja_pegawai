@@ -23,7 +23,7 @@ class Kriteria extends Model
 
     public function pegawai()
     {
-        return $this->belongsToMany(Kriteria::class, 'pegawai_kriterias', 'id_kriteria', 'id_pegawai');
+        return $this->belongsToMany(Pegawai::class, 'pegawai_kriterias', 'id_kriteria', 'id_pegawai');
     }
 
     public function pegawai_kriteria()

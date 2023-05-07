@@ -14,12 +14,16 @@ class Kegiatan extends Model
         'id_pegawai',
         'kegiatan_kinerja',
         'target',
-        'realisasi',
-        'kategori'
+        'jabatan',
     ];
 
     public function pegawai()
     {
-        return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id');
+        return $this->belongsToMany(Pegawai::class, 'pegawai_kriterias', 'id_kegiatan', 'id_pegawai');
+    }
+
+    public function pegawai_kegiatan()
+    {
+        return $this->hasMany(PegawaiKegiatan::class, 'id_kegiatan', 'id');
     }
 }

@@ -15,12 +15,9 @@ class CreateKegiatansTable extends Migration
     {
         Schema::create('kegiatans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pegawai')->nullable();
-            $table->foreign('id_pegawai')->references('id')->on('pegawais');
             $table->text('kegiatan_kinerja');
             $table->string('target');
-            $table->integer('realisasi');
-            $table->string('kategori');
+            $table->string('jabatan');
             $table->timestamps();
         });
     }
