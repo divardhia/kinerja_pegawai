@@ -20,40 +20,17 @@
                             </div>
                         @endif
 
-                        <form class="needs-validation" action="{{ route('pegawai.store') }}" method="post"
+                        <form class="needs-validation" action="{{ route('kegiatan.store') }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row g-2">
                                 <div class="col-md-6">
-                                    <label class="form-label" for="nama_depan">Nama Depan</label>
-                                    <input type="nama_depan" name="nama_depan" class="form-control" id="nama_depan"
-                                        aria-describedby="nama_depan" value="{{ old('nama_depan') }}" style="width: 95%">
+                                    <label class="form-label" for="kegiatan_kinerja">Kegiatan Kinerja</label>
+                                    <textarea type="kegiatan_kinerja" name="kegiatan_kinerja" class="form-control"
+                                        id="kegiatan_kinerja" aria-describedby="kegiatan_kinerja"
+                                        value="{{ old('kegiatan_kinerja') }}" style="width: 95%"></textarea>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label class="form-label" for="nama_belakang">Nama Belakang</label>
-                                    <input type="nama_belakang" name="nama_belakang" class="form-control" id="nama_belakang"
-                                        aria-describedby="nama_belakang" value="{{ old('nama_belakang') }}">
-                                </div>
-                            </div>
-                            <br>
-
-                            <div class="row g-2">
-                                <div class="col-md-6">
-                                    <label class="form-label" for="email">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email"
-                                        aria-describedby="email" value="{{ old('email') }}">
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label" for="password">Password</label>
-                                    <input type="password" name="password" class="form-control" id="password"
-                                        aria-describedby="password" style="width: 95%">
-                                </div>
-                            </div>
-                            <br>
-
-                            <div class="row g-2">
                                 <div class="col-md-6">
                                     <label class="form-label" for="jabatan">Jabatan</label>
                                     <select type="jabatan" name="jabatan" class="form-control" id="jabatan"
@@ -67,19 +44,33 @@
                                         <option value="Juru Pelihara Cagar Budaya">Juru Pelihara Cagar Budaya</option>
                                     </select>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label" for="role">Role</label>
-                                    <select type="role" name="role" class="form-control" id="role"
-                                        aria-describedby="role">
-                                        <option value="1">Admin</option>
-                                        <option value="2">Kepala</option>
-                                        <option value="3">Pegawai</option>
-                                    </select>
-                                </div>
                             </div>
                             <br>
 
+                            <div class="row g-2">
+                                <div class="col-md-12">
+                                    <label class="form-label" for="nama_belakang">Target</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <input type="number" name="target_down" class="form-control" id="target_down"
+                                                    aria-describedby="target_down" value="0">
+                                                <span class="input-group-text">%</span>
+                                                <span class="mt-2 ms-3">-</span>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <input type="number" name="target_up" class="form-control" id="target_up"
+                                                    aria-describedby="target_up" value="{{ old('target_up') }}">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
                     </div>
                     <button class="btn btn-primary" type="submit">Tambah</button>
                     </form>
@@ -89,3 +80,20 @@
     </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        $('#target_down, #target_up').on('change', function(){
+            var up = parseInt($('#target_up').val());
+            var down = parseInt($('#target_down').val());
+            if($('#target_down').val() > 120){
+                $('#target_down').val(120);
+                $('#target_up').val(120);
+            } else if($('#target_up').val() > 120){
+                $('#target_up').val(120);
+            } else if(up < down){
+                $('#target_up').val(down+1);
+            }
+        });
+    </script>
+@endpush

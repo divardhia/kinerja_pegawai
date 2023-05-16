@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BobotController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PenilaianController;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +26,15 @@ Route::post('/changeAvatar', [HomeController::class, 'changeAvatar'])->name('use
 Route::post('/changeMode', [App\Http\Controllers\HomeController::class, 'changeMode'])->name('changeMode');
 
 Route::resource('/pegawai', PegawaiController::class);
+Route::get('/pegawai/{id}/nilai_kinerja', [PegawaiController::class, 'nilai_kinerja'])->name('pegawai.nilai_kinerja');
+Route::post('/pegawai/nilai_kinerja', [PegawaiController::class, 'store_nilai_kinerja'])->name('pegawai.nilai_kinerja.store');
 
 // edit bobot
 Route::get('/bobot', [BobotController::class, 'edit'])->name('bobot.edit');
 Route::post('/bobot/update', [BobotController::class, 'update'])->name('bobot.update');
+
+// kegiatan
+Route::resource('/kegiatan', KegiatanController::class);
 
 // penilaian
 Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');

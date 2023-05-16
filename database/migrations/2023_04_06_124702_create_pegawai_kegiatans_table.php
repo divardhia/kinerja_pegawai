@@ -20,7 +20,6 @@ class CreatePegawaiKegiatansTable extends Migration
             $table->unsignedBigInteger('id_kegiatan')->nullable();
             $table->foreign('id_kegiatan')->references('id')->on('kegiatans');
             $table->integer('realisasi');
-            $table->string('kategori');
             $table->timestamps();
         });
     }
