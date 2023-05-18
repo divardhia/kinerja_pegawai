@@ -32,17 +32,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($penilaian as $item)
+                                    @foreach ($pegawai as $item)
                                         <tr class="text-center">
                                             <td>{{ $item->nama_depan }} {{ $item->nama_belakang }}</td>
-                                            <td> </td>
-                                            <td> </td>
-                                            <td> </td>
-                                            <td> </td>
-                                            <td> </td>
+                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-"}}</td>
+                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 2)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 2)->where('year', date('Y'))->first()->nilai : "-"}}</td>
+                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 3)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 3)->where('year', date('Y'))->first()->nilai : "-"}}</td>
+                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 4)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 4)->where('year', date('Y'))->first()->nilai : "-"}}</td>
+                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 5)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 5)->where('year', date('Y'))->first()->nilai : "-"}}</td>
                                             <td>
                                                 @if (Auth::user()->role == '1')
-                                                    <a class="btn btn-primary" href="/admin/penilaian/edit"> Input Nilai</a>
+                                                    <a class="btn btn-primary" href="{{route('pegawai.nilai_kinerja', $item->id)}}"> Input Nilai</a>
                                                 @else
                                                     <a class="btn btn-primary" href="admin/penilaian/{{ $item->id }}">
                                                         <i class="fas fa-eye"></i> Detail </a>

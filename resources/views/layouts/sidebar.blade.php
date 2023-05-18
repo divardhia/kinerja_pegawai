@@ -40,25 +40,25 @@
                         <a class="nav-link menu-title " href="#"><i data-feather="user"></i><span>Change Password</span></a>
                     </li>
 
+                    @if (Auth::user()->role == '1' || Auth::user()->role == '2')
                     <li class="sidebar-main-title">
                         <div>
                             <h6>Master</h6>
                         </div>
                     </li>
-                    @if (Auth::user()->role == '1' || Auth::user()->role == '2')
                     <li class="dropdown">
                         <a class="nav-link " href={{ Auth::user()->role == '1' ? route('pegawai.index') : route('pegawai.index')}}><i
                                 data-feather="box"></i><span>Pegawai</span></a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link " href={{route('bobot.edit')}}><i
+                            data-feather="box"></i><span>Edit Bobot</span></a>
                     </li>
                     <li class="dropdown">
                         <a class="nav-link " href={{ Auth::user()->role == '1' ? route('kegiatan.index') : route('kegiatan.index')}}><i
                                 data-feather="box"></i><span>Kegiatan</span></a>
                     </li>
                     @endif
-                    <li class="dropdown">
-                        <a class="nav-link " href={{route('bobot.edit')}}><i
-                            data-feather="box"></i><span>Edit Bobot</span></a>
-                    </li>
                     
                     {{-- <li class="sidebar-main-title">
                         <div>

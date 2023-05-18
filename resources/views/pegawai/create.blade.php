@@ -42,13 +42,13 @@
                                 <div class="col-md-6">
                                     <label class="form-label" for="email">Email</label>
                                     <input type="email" name="email" class="form-control" id="email"
-                                        aria-describedby="email" value="{{ old('email') }}">
+                                        aria-describedby="email" value="{{ old('email') }}" style="width: 95%">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label" for="password">Password</label>
                                     <input type="password" name="password" class="form-control" id="password"
-                                        aria-describedby="password" style="width: 95%">
+                                        aria-describedby="password">
                                 </div>
                             </div>
                             <br>
@@ -57,7 +57,7 @@
                                 <div class="col-md-6">
                                     <label class="form-label" for="jabatan">Jabatan</label>
                                     <select type="jabatan" name="jabatan" class="form-control" id="jabatan"
-                                        aria-describedby="role">
+                                        aria-describedby="role" style="width: 95%">
                                         <option value="Admin">Admin</option>
                                         <option value="Pimpinan">Pimpinan</option>
                                         <option value="Operator">Operator</option>
