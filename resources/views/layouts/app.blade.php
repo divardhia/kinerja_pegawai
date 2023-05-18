@@ -50,7 +50,7 @@
     <link id="color" rel="stylesheet" href="{{ asset('viho') }}/assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('viho') }}/assets/css/responsive.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('viho') }}/assets/css/date-picker.css">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('viho') }}/assets/css/date-picker.css"> --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://kit.fontawesome.com/4c88a2d5c6.js" crossorigin="anonymous"></script>
@@ -104,9 +104,9 @@
     <script src="{{ asset('viho') }}/assets/js/counter/jquery.counterup.min.js"></script>
     <script src="{{ asset('viho') }}/assets/js/counter/counter-custom.js"></script>
     <script src="{{ asset('viho') }}/assets/js/custom-card/custom-card.js"></script>
-    <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.js"></script>
+    {{-- <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.js"></script>
     <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.en.js"></script>
-    <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
+    <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.custom.js"></script> --}}
     <script src="{{ asset('viho') }}/assets/js/owlcarousel/owl.carousel.js"></script>
     <script src="{{ asset('viho') }}/assets/js/general-widget.js"></script>
     <script src="{{ asset('viho') }}/assets/js/height-equal.js"></script>
@@ -116,9 +116,9 @@
     <script src="{{ asset('viho') }}/assets/js/script.js"></script>
     {{-- <script src="{{ asset('viho') }}/assets/js/theme-customizer/customizer.js"></script> --}}
     <!-- Plugin used-->
-    <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.js"></script>
+    {{-- <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.js"></script>
     <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.en.js"></script>
-    <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
+    <script src="{{ asset('viho') }}/assets/js/datepicker/date-picker/datepicker.custom.js"></script> --}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>

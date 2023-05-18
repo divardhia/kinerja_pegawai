@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PenilaianController;
+use App\Http\Controllers\PerhitunganController;
+use App\Models\Kriteria;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +40,10 @@ Route::resource('/kegiatan', KegiatanController::class);
 
 // penilaian
 Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
+
+// perhitungan
+Route::get('/perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan.index');
+Route::get('/perhitungan/hasil', [PerhitunganController::class, 'hasil'])->name('perhitungan.hasil');
 
 Route::get('/', function () {
     return redirect()->route('login');

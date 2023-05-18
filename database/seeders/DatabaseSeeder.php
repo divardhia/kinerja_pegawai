@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(KriteriaSeeder::class);
         $this->call(SettingSeeder::class);
         $this->call(KegiatanSeeder::class);
+        $this->call(NilaiSeeder::class);
     }
 }

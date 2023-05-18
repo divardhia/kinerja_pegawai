@@ -125,7 +125,7 @@
                             data-feather="database"></i><span>Penilaian</span></a>
                     </li>
                     <li class="dropdown">
-                        <a class="nav-link " href={{route('home')}}><i
+                        <a class="nav-link " href={{route('perhitungan.index')}}><i
                             data-feather="database"></i><span>Perhitungan</span></a>
                     </li>
                     <li class="dropdown">
