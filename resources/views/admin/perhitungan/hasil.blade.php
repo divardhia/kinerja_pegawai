@@ -109,6 +109,28 @@
                             </table>
                         </div>
                         <hr>
+
+                        <h2>Hasil Perangkingan Metode MOORA</h2>
+                        <div class="table-responsive">
+                            <table class="table" id="rank">
+                                <thead class="bg-primary">
+                                    <tr class="text-center">
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">Yi</th>
+                                        <th scope="col">Rangking</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($rank as $item)
+                                        <tr class="text-center">
+                                            <td>{{ $item['nama'] }}</td>
+                                            <td>{{$item['yi']}}</td>
+                                            <td>{{$loop->iteration}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,6 +174,22 @@
                 "info": false,
                 "autoWidth": false,
                 "responsive": true,
+            });
+        });
+
+        $(function() {
+            $('#rank').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "responsive": true,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
             });
         });
     </script>

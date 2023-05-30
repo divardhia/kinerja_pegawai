@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kegiatan;
 use App\Models\Kriteria;
 use App\Models\Pegawai;
+use App\Models\PegawaiKegiatan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenilaianController extends Controller
 {
@@ -15,5 +18,25 @@ class PenilaianController extends Controller
             $q->where('role', User::PEGAWAI);
         })->get();
         return view('admin.penilaian.index', compact('pegawai'));
+    }
+
+    public function nilai_pegawai()
+    {
+        $year_now = date('Y');
+        $user = Auth::user();
+        $pegawai = Pegawai::where('id_user', $user->id)->first();
+        $kegiatan = Kegiatan::where('jabatan', $pegawai->jabatan)->get();
+        foreach ($kegiatan as $k) {
+            $k->realisasi = PegawaiKegiatan::where([['id_pegawai', $pegawai->id], ['id_kegiatan', $k->id], ['year', $year_now]])->first() ? PegawaiKegiatan::where([['id_pegawai', $pegawai->id], ['id_kegiatan', $k->id], ['year', $year_now]])->first()->realisasi : "-";
+        }
+        $nilai_kriteria = [];
+        $kriteria = Kriteria::pluck('nama_kriteria')->toArray();
+        for ($i = 1; $i <= 5; $i++) {
+            $nilai_kriteria[] = [
+                'nama_kriteria' => $kriteria[$i-1],
+                'nilai' => $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-"
+            ];
+        }
+        return view('pegawai.nilai_pegawai', compact('pegawai', 'kegiatan', 'nilai_kriteria'));
     }
 }

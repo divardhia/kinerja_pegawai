@@ -87,25 +87,25 @@ class KegiatanSeeder extends Seeder
         DB::table('kegiatans')->insert([
             'kegiatan_kinerja'  => 'Merawat, memelihara, dan menjaga keamanan cagar budaya',
             'target'            => '90% - 100%',
-            'jabatan'           => 'Juru Cagar Budaya',
+            'jabatan'           => 'Juru Pelihara Cagar Budaya',
         ]);
 
         DB::table('kegiatans')->insert([
             'kegiatan_kinerja'  => 'Merawat secara berkala dan rutin',
             'target'            => '90% - 100%',
-            'jabatan'           => 'Juru Cagar Budaya',
+            'jabatan'           => 'Juru Pelihara Cagar Budaya',
         ]);
 
         DB::table('kegiatans')->insert([
             'kegiatan_kinerja'  => 'Memandu dan memberi penjelasan kepada pengunjung kawasan cagar budaya',
             'target'            => '90% - 100%',
-            'jabatan'           => 'Juru Cagar Budaya',
+            'jabatan'           => 'Juru Pelihara Cagar Budaya',
         ]);
 
         DB::table('kegiatans')->insert([
             'kegiatan_kinerja'  => 'Membuat laporan bulanan dan tahunan',
             'target'            => '90% - 100%',
-            'jabatan'           => 'Juru Cagar Budaya',
+            'jabatan'           => 'Juru Pelihara Cagar Budaya',
         ]);
     }
 }

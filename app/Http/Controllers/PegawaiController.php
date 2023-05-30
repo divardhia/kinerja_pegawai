@@ -150,7 +150,7 @@ class PegawaiController extends Controller
         }
         $nilai_kriteria = array();
         for ($i = 2; $i <= 5; $i++) {
-            $c = $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "";
+            $c = $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', date('Y'))->first()->nilai : "";
             array_push($nilai_kriteria, $c);
         }
         return view('pegawai.nilai_kinerja', compact('pegawai', 'kegiatan', 'nilai_kriteria'));

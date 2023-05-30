@@ -120,6 +120,7 @@
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i class="fas fa-fingerprint me-3"></i><span>Check Fingerprint</span></a>
                     </li> --}}
+                    @if (Auth::user()->role == 1)
                     <li class="dropdown">
                         <a class="nav-link " href={{route('penilaian.index')}}><i
                             data-feather="database"></i><span>Penilaian</span></a>
@@ -128,9 +129,21 @@
                         <a class="nav-link " href={{route('perhitungan.index')}}><i
                             data-feather="database"></i><span>Perhitungan</span></a>
                     </li>
+                    @endif
+
+                    @if (Auth::user()->role == 3)
                     <li class="dropdown">
-                        <a class="nav-link " href="{{route('home')}}"><i data-feather="file"></i><span>Cetak Laporan</span></a>
+                        <a class="nav-link " href={{route('user.nilai.pegawai')}}><i
+                            data-feather="database"></i><span>Nilai</span></a>
                     </li>
+                    <li class="dropdown">
+                        <a class="nav-link " href={{route('home')}}><i
+                            data-feather="database"></i><span>Hasil Penilaian</span></a>
+                    </li>
+                    @endif
+                    {{-- <li class="dropdown">
+                        <a class="nav-link " href="{{route('home')}}"><i data-feather="file"></i><span>Cetak Laporan</span></a>
+                    </li> --}}
                     {{-- @elseif(Auth::user()->role == "2")
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i
