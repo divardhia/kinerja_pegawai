@@ -137,7 +137,7 @@
                             data-feather="database"></i><span>Nilai</span></a>
                     </li>
                     <li class="dropdown">
-                        <a class="nav-link " href={{route('home')}}><i
+                        <a class="nav-link " href={{route('pegawai.nilai.index')}}><i
                             data-feather="database"></i><span>Hasil Penilaian</span></a>
                     </li>
                     @endif

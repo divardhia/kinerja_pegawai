@@ -6,6 +6,7 @@ use App\Models\Kegiatan;
 use App\Models\Kriteria;
 use App\Models\Pegawai;
 use App\Models\PegawaiKegiatan;
+use App\Models\Rank;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,23 @@ class PenilaianController extends Controller
             $q->where('role', User::PEGAWAI);
         })->get();
         return view('admin.penilaian.index', compact('pegawai'));
+    }
+
+    public function index_hasil_pegawai()
+    {
+        return view('pegawai.index_hasil');
+    }
+
+    public function hasil_nilai_pegawai(Request $request)
+    {
+        $year = $request->year;
+        $jabatan = Pegawai::where('id_user', Auth::user()->id)->first()->jabatan;
+        $nilai = Rank::where([['jabatan', $jabatan], ['year', $year]])->orderBy('rank')->get();
+        if(count($nilai) > 0){
+            return view('pegawai.hasil_pegawai', compact('nilai', 'year', 'jabatan'));
+        } else {
+            return back()->withErrors('Mohon maaf, Hasil Penilaian Belum Tersedia');
+        }
     }
 
     public function nilai_pegawai()
