@@ -37,7 +37,7 @@
                         </ul>
                     </li> --}}
                     <li class="dropdown">
-                        <a class="nav-link menu-title " href="#"><i data-feather="user"></i><span>Change Password</span></a>
+                        <a class="nav-link menu-title " href="{{route('user.password.edit')}}"><i data-feather="user"></i><span>Change Password</span></a>
                     </li>
 
                     @if (Auth::user()->role == '1' || Auth::user()->role == '2')
@@ -50,6 +50,7 @@
                         <a class="nav-link " href={{ Auth::user()->role == '1' ? route('pegawai.index') : route('pegawai.index')}}><i
                                 data-feather="box"></i><span>Pegawai</span></a>
                     </li>
+                    @if (Auth::user()->role == '1')
                     <li class="dropdown">
                         <a class="nav-link " href={{route('bobot.edit')}}><i
                             data-feather="box"></i><span>Edit Bobot</span></a>
@@ -58,6 +59,7 @@
                         <a class="nav-link " href={{ Auth::user()->role == '1' ? route('kegiatan.index') : route('kegiatan.index')}}><i
                                 data-feather="box"></i><span>Kegiatan</span></a>
                     </li>
+                    @endif
                     @endif
                     
                     {{-- <li class="sidebar-main-title">
@@ -120,7 +122,7 @@
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i class="fas fa-fingerprint me-3"></i><span>Check Fingerprint</span></a>
                     </li> --}}
-                    @if (Auth::user()->role == 1)
+                    @if (Auth::user()->role == 1 || Auth::user()->role == 2)
                     <li class="dropdown">
                         <a class="nav-link " href={{route('penilaian.index')}}><i
                             data-feather="database"></i><span>Penilaian</span></a>

@@ -26,11 +26,7 @@
                         </ul>
                     </div>
                     <br>
-                    @if (Auth::user()->role == '1')
-                        <a class="btn btn-success mt-3" href="/pegawai">Kembali</a>
-                    @else
-                        <a class="btn btn-success mt-3" href="/pegawai_kepala">Kembali</a>
-                    @endif
+                    <a class="btn btn-success mt-3" href="/pegawai">Kembali</a>
                 </div>
             </div>
         </div>

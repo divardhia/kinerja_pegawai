@@ -8,6 +8,7 @@ use App\Models\Pegawai;
 use App\Models\PegawaiKegiatan;
 use App\Models\Rank;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +37,30 @@ class PenilaianController extends Controller
         } else {
             return back()->withErrors('Mohon maaf, Hasil Penilaian Belum Tersedia');
         }
+    }
+
+    public function cetak_nilai_pegawai()
+    {
+        $year_now = date('Y');
+        $user = Auth::user();
+        $pegawai = Pegawai::where('id_user', $user->id)->first();
+        $pimpinan = User::where('role',User::KEPALA)->first();
+        $kegiatan = Kegiatan::where('jabatan', $pegawai->jabatan)->get();
+        foreach ($kegiatan as $k) {
+            $k->realisasi = PegawaiKegiatan::where([['id_pegawai', $pegawai->id], ['id_kegiatan', $k->id], ['year', $year_now]])->first() ? PegawaiKegiatan::where([['id_pegawai', $pegawai->id], ['id_kegiatan', $k->id], ['year', $year_now]])->first()->realisasi : "-";
+        }
+        $nilai_kriteria = [];
+        $kriteria = Kriteria::pluck('nama_kriteria')->toArray();
+        for ($i = 1; $i <= 5; $i++) {
+            $nilai_kriteria[] = [
+                'nama_kriteria' => $kriteria[$i-1],
+                'nilai' => $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-"
+            ];
+        }
+        $nama_file = "Laporan_nilai_pegawai_" . $user->name . "_" . $year_now . ".pdf";
+        $pdf = Pdf::loadView('pegawai.nilai_pegawai_pdf', compact('pegawai', 'kegiatan', 'nilai_kriteria', 'year_now', 'pimpinan'));
+        return $pdf->download($nama_file);
+        // return view('pegawai.nilai_pegawai_pdf', compact('pegawai', 'kegiatan', 'nilai_kriteria', 'year_now', 'pimpinan'));
     }
 
     public function nilai_pegawai()

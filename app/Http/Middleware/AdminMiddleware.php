@@ -18,7 +18,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role != User::ADMIN){
+        if(Auth::user()->role == User::PEGAWAI){
             alert()->error('Error', "Maaf Anda tidak memiliki akses sebagai Kepala Divisi!");
         }
         return $next($request);

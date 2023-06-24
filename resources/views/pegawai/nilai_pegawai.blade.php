@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Cetak</a>
+                <a href="{{route('cetak.nilai.pegawai')}}" class="btn btn-primary">Cetak</a>
             </div>
         </div>
     </div>

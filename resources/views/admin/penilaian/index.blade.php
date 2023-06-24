@@ -28,7 +28,9 @@
                                         <th scope="col">C3</th>
                                         <th scope="col">C4</th>
                                         <th scope="col">C5</th>
+                                        @if (Auth::user()->role == '1')
                                         <th scope="col" width="350px">Action</th>
+                                        @endif  
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,23 +42,9 @@
                                             <td>{{$item->pegawai_kriteria->where('id_kriteria', 3)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 3)->where('year', date('Y'))->first()->nilai : "-"}}</td>
                                             <td>{{$item->pegawai_kriteria->where('id_kriteria', 4)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 4)->where('year', date('Y'))->first()->nilai : "-"}}</td>
                                             <td>{{$item->pegawai_kriteria->where('id_kriteria', 5)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 5)->where('year', date('Y'))->first()->nilai : "-"}}</td>
-                                            <td>
-                                                @if (Auth::user()->role == '1')
-                                                    <a class="btn btn-primary" href="{{route('pegawai.nilai_kinerja', $item->id)}}"> Input Nilai</a>
-                                                @else
-                                                    <a class="btn btn-primary" href="admin/penilaian/{{ $item->id }}">
-                                                        <i class="fas fa-eye"></i> Detail </a>
-                                                @endif
-
-                                                {{-- <form action="/pegawai/{{ $item->id }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure?')"> <i class="fas fa-trash"></i>
-                                                Delete </button>
-                                        </form> --}}
-                                            </td>
+                                            @if (Auth::user()->role == '1')
+                                            <a class="btn btn-primary" href="{{route('pegawai.nilai_kinerja', $item->id)}}"> Input Nilai</a>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

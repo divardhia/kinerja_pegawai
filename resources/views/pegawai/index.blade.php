@@ -40,14 +40,8 @@
                                                     <a class="btn btn-primary" href="/pegawai/{{ $item->id }}/edit"> <i
                                                             class="fas fa-pen"></i> Edit </a>
                                                 @else
-                                                    <a class="btn btn-primary" href="/pegawai_kepala/{{ $item->id }}">
-                                                        <i class="fas fa-eye"></i> Detail </a>
-                                                @endif
-
-                                                @if ($item->jabatan != 'Admin' && $item->jabatan != 'Pimpinan')
-                                                    <a class="btn btn-primary mt-2"
-                                                        href="/pegawai/{{ $item->id }}/nilai_kinerja"> <i
-                                                            class="fas fa-pen"></i> Nilai Kinerja </a>
+                                                    <a class="btn btn-primary" href="/pegawai/{{ $item->id }}"> <i
+                                                            class="fas fa-eye"></i> Detail </a>
                                                 @endif
 
                                                 {{-- <form action="/pegawai/{{ $item->id }}" method="POST">

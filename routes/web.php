@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\BobotController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KegiatanController;
@@ -27,6 +28,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('/changeAvatar', [HomeController::class, 'changeAvatar'])->name('user.avatar.change');
     Route::post('/changeMode', [App\Http\Controllers\HomeController::class, 'changeMode'])->name('changeMode');
+    Route::get('password', [PasswordController::class, 'edit'])->name('user.password.edit');
+    Route::patch('password', [PasswordController::class, 'update'])->name('user.password.update');
 
     // role admin/kepala divisi
     Route::middleware(['admin'])->group(function () {
@@ -54,8 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/nilai/pegawai', [PenilaianController::class, 'nilai_pegawai'])->name('user.nilai.pegawai');
     Route::get('/nilai/index', [PenilaianController::class, 'index_hasil_pegawai'])->name('pegawai.nilai.index');
     Route::get('/nilai/hasil', [PenilaianController::class, 'hasil_nilai_pegawai'])->name('pegawai.nilai.hasil');
-
-    // hasil penilaian pegawai
+    Route::get('/cetak/nilai/pegawai', [PenilaianController::class, 'cetak_nilai_pegawai'])->name('cetak.nilai.pegawai');
 });
 
 Route::get('/', function () {
