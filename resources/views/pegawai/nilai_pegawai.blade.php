@@ -42,6 +42,7 @@
                                         <th class="text-center">Kegiatan Kinerja</th>
                                         <th scope="col">Target</th>
                                         <th scope="col">Realisasi</th>
+                                        <th scope="col">Kategori</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,13 +51,16 @@
                                             <td>{{ $item->kegiatan_kinerja }}</td>
                                             <td>{{ $item->target }}</td>
                                             <td>{{ $item->realisasi ?? '-' }}</td>
+                                            <td>{{ $item->kategori }}</td>
                                         </tr>
                                     @endforeach
                                     <tr class="text-center">
                                         <td>Nilai Akhir Kinerja</td>
                                         <td>-</td>
-                                        <td>{{ $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai: '-' }}
+                                        <td id="c1">
+                                            {{ $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai: '-' }}
                                         </td>
+                                        <td id="kategori_c1"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -71,6 +75,7 @@
                                     <tr class="text-center">
                                         <th class="text-center">Kriteria</th>
                                         <th scope="col">Nilai</th>
+                                        <th scope="col">Kategori</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,6 +83,7 @@
                                         <tr class="text-center">
                                             <td>{{ $item['nama_kriteria'] }}</td>
                                             <td>{{ $item['nilai'] }}</td>
+                                            <td>{{ $item['kategori'] }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -87,7 +93,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{{route('cetak.nilai.pegawai')}}" class="btn btn-primary">Cetak</a>
+                <a href="{{ route('cetak.nilai.pegawai') }}" class="btn btn-primary">Cetak</a>
             </div>
         </div>
     </div>
@@ -117,6 +123,25 @@
                 "autoWidth": false,
                 "responsive": true,
             });
+        });
+
+        // function untuk rentang penilaian
+        const rentang_penilaian = (nilai) => {
+            if (nilai >= 101 && nilai <= 110) {
+                return 'Sangat Baik';
+            } else if (nilai >= 90 && nilai <= 100) {
+                return 'Baik';
+            } else if (nilai >= 80 && nilai <= 89) {
+                return 'Cukup';
+            } else if (nilai >= 60 && nilai <= 79) {
+                return 'Kurang';
+            } else {
+                return 'Sangat Kurang';
+            }
+        }
+
+        $(document).ready(function() {
+            $('#kategori_c1').text(rentang_penilaian($('#c1').text()));
         });
     </script>
 @endpush

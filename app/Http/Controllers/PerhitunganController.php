@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Kriteria;
 use App\Models\Pegawai;
 use App\Models\Rank;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PerhitunganController extends Controller
 {
     public function index()
     {
-        return view('admin.perhitungan.index');
+        $pegawai = Pegawai::where('id_user', Auth::user()->id)->first();
+        return view('admin.perhitungan.index', compact('pegawai'));
     }
 
     public function hasil(Request $request)
@@ -21,7 +24,9 @@ class PerhitunganController extends Controller
         try {
             $jabatan = $request->jabatan;
             $year = $request->year;
-            $pegawai = Pegawai::where([['jabatan', $jabatan], ['status', true]])->get();
+            $pegawai = Pegawai::where([['jabatan', $jabatan], ['status', true]])->whereHas('user', function ($q) {
+                $q->where('role', User::PEGAWAI);
+            })->get();
 
             // cek kelengkapan nilai pegawai
             foreach ($pegawai as $p) {

@@ -31,11 +31,15 @@
                                 <label class="form-label" for="jabatan">Jabatan</label>
                                 <select type="jabatan" name="jabatan" class="form-control" id="jabatan"
                                     aria-describedby="jabatan" required>
+                                    @if (Auth::user()->role == '1')
                                     <option value="Operator">Operator</option>
                                     <option value="Pramubakti">Pramubakti</option>
                                     <option value="Pengemudi">Pengemudi</option>
                                     <option value="Petugas Keamanan">Petugas Keamanan</option>
                                     <option value="Juru Pelihara Cagar Budaya">Juru Pelihara Cagar Budaya</option>
+                                    @else
+                                        <option selected value="{{$pegawai->jabatan}}">{{$pegawai->jabatan}}</option>
+                                    @endif
                                 </select>
                             </div>
                             <br>

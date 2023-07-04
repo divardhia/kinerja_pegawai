@@ -43,6 +43,7 @@
                                             <th class="text-center">Kegiatan Kinerja</th>
                                             <th scope="col">Target</th>
                                             <th scope="col">Realisasi</th>
+                                            <th scope="col">Kategori</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -52,12 +53,14 @@
                                                 <td>{{ $item->target }}</td>
                                                 <td><input type="number" class="form-control" name="realisasi[]"
                                                         id="realisasi" value="{{ $item->realisasi ?? '' }}" required></td>
+                                                <td class="kategori-{{$loop->iteration}}"></td>
                                             </tr>
                                         @endforeach
                                         <tr class="text-center">
                                             <td>Nilai Akhir C1</td>
                                             <td>-</td>
-                                            <td>{{$pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-"}}</td>
+                                            <td id="c1">{{$pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-"}}</td>
+                                            <td class="kategori-{{count($kegiatan)+1}}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -73,9 +76,24 @@
                                 </div>
 
                                 <div class="col-md-6">
+                                    <label class="form-label" for="kategori_c2">Kategori C2</label>
+                                    <input type="text" name="kategori_c2" class="form-control" id="kategori_c2"
+                                        aria-describedby="kategori_c2" disabled>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-md-6">
                                     <label class="form-label" for="c3">C3</label>
-                                    <input type="number" name="c3" class="form-control" id="c3"
+                                    <input type="number" name="c3" class="form-control" id="c3" style="width: 95%"
                                         aria-describedby="c3" value="{{ $nilai_kriteria[1] }}">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label" for="kategori_c3">Kategori C3</label>
+                                    <input type="text" name="kategori_c3" class="form-control" id="kategori_c3"
+                                        aria-describedby="kategori_c3" disabled>
                                 </div>
                             </div>
                             <br>
@@ -88,9 +106,24 @@
                                 </div>
 
                                 <div class="col-md-6">
+                                    <label class="form-label" for="kategori_c4">Kategori C4</label>
+                                    <input type="text" name="kategori_c4" class="form-control" id="kategori_c4"
+                                        aria-describedby="kategori_c4" disabled>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-md-6">
                                     <label class="form-label" for="c5">C5</label>
-                                    <input type="number" name="c5" class="form-control" id="c5"
+                                    <input type="number" name="c5" class="form-control" id="c5" style="width: 95%"
                                         aria-describedby="c5" value="{{$nilai_kriteria[3]}}">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label" for="kategori_c5">Kategori C5</label>
+                                    <input type="text" name="kategori_c5" class="form-control" id="kategori_c5"
+                                        aria-describedby="kategori_c5" disabled>
                                 </div>
                             </div>
                             <br>
@@ -107,6 +140,21 @@
 
 @push('js')
     <script>
+        // function untuk rentang penilaian
+        const rentang_penilaian = (nilai) =>{
+            if(nilai >= 101 && nilai <= 110){
+                return 'Sangat Baik';
+            } else if(nilai >= 90 && nilai <= 100) {
+                return 'Baik';
+            } else if(nilai >= 80 && nilai <= 89) {
+                return 'Cukup';
+            } else if(nilai >= 60 && nilai <= 79) {
+                return 'Kurang';
+            } else {
+                return 'Sangat Kurang';
+            }
+        }
+
         $(function() {
             $('#example').DataTable({
                 "paging": true,
@@ -124,5 +172,77 @@
                 $(this).val(120);
             }
         });
+
+        // function get realisasi array
+        const array_realisasi = () =>{
+            var realisasi = $('input[name="realisasi[]"]').map(function() {
+                return $(this).val();
+            }).get();
+            return realisasi;
+        }
+
+        // function hitung nilai c1
+        const hitungC1 = () =>{
+            var realisasi = array_realisasi();
+            var total = 0;
+            var jumlahElemen = realisasi.length;
+
+            // Jumlahkan semua elemen dalam array
+            for (var i = 0; i < jumlahElemen; i++) {
+                total += parseInt(realisasi[i]);
+            }
+
+            // Hitung rata-rata
+            var c1 = total / jumlahElemen;
+            c1 = c1.toFixed(0);
+            $('#c1').text(c1);
+            var jumlah = realisasi.length + 1;
+            var nameClass = '.kategori-' + jumlah;
+            $(nameClass).text(rentang_penilaian(c1));
+        }
+
+        // function untuk set kategori realisasi
+        const setKategoriRealisasi = () => {
+            var realisasi = array_realisasi();
+            for (let index = 0; index < realisasi.length; index++) {
+                var i = index+1;
+                var className = ".kategori-" + i;
+                $(className).text(rentang_penilaian(realisasi[index]));
+            }
+        }
+
+        // function untuk set kategori kriteria
+        const setKategoriC = () =>{
+            for (let index = 2; index <= 5; index++) {
+                var c = $('#c'+index).val();
+                $('#kategori_c'+index).val(rentang_penilaian(c));
+            }
+        }
+        
+        $(document).ready(function(){
+            // set awal kategori realisasi dan c1
+            setKategoriRealisasi();
+            var realisasi = array_realisasi();
+            var jumlah = realisasi.length + 1;
+            var nameClass = '.kategori-' + jumlah;
+            $(nameClass).text(rentang_penilaian($('#c1').text()));
+
+            // set awal kategori kriteria
+            setKategoriC();
+        });
+
+        // saat nilai realisasi diubah
+        $('input[name="realisasi[]"]').on('keyup', function(){
+            setKategoriRealisasi();
+            hitungC1();
+        });
+
+        // saat nilai kriteria diubah
+        for (let index = 2; index <= 5; index++) {
+            $('#c'+index).on('keyup', function(){
+                setKategoriC();
+            });
+        }
+        
     </script>
 @endpush

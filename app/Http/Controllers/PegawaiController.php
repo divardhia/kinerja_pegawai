@@ -23,7 +23,9 @@ class PegawaiController extends Controller
     {
         $jabatan = Pegawai::where('id_user', Auth::user()->id)->first()->jabatan;
         if(Auth::user()->role == User::KEPALA){
-            $pegawai = Pegawai::where('jabatan', $jabatan)->get();
+            $pegawai = Pegawai::where([['jabatan', $jabatan], ['status', true]])->whereHas('user', function($q){
+                $q->where('role', User::PEGAWAI);
+            })->get();
         } else {
             $pegawai = Pegawai::all();
         }
@@ -170,6 +172,7 @@ class PegawaiController extends Controller
         $kegiatan = Kegiatan::where('jabatan', $pegawai->jabatan)->pluck('id')->toArray();
         $realisasi = $request->realisasi;
         $nilai_kinerja = array_sum($realisasi) / count($realisasi);
+        $nilai_c = [$nilai_kinerja, $request->c2, $request->c3, $request->c4, $request->c5];
 
         // simpan nilai realisasi pada tabel pegawai_kegiatan
         for ($i = 0; $i < count($kegiatan); $i++) {
@@ -192,7 +195,7 @@ class PegawaiController extends Controller
             }
             $pegawai_kriteria->id_pegawai = $pegawai->id;
             $pegawai_kriteria->id_kriteria = $i;
-            $pegawai_kriteria->nilai = $nilai_kinerja;
+            $pegawai_kriteria->nilai = $nilai_c[$i-1];
             $pegawai_kriteria->year = $year_now;
             $pegawai_kriteria->save();
         }

@@ -58,6 +58,7 @@
                     <th>Kegiatan Kinerja</th>
                     <th>Target</th>
                     <th>Realisasi</th>
+                    <th>Kategori</th>
                 </tr>
             </thead>
             @foreach ($kegiatan as $item)
@@ -66,13 +67,14 @@
                     <td>{{ $item->kegiatan_kinerja }}</td>
                     <td>{{ $item->target }}</td>
                     <td>{{ $item->realisasi ?? '-' }}</td>
+                    <td>{{ $item->kategori }}</td>
                 </tr>
             @endforeach
             <tr class="text-center">
                 <td colspan="2">Nilai Akhir Kinerja</td>
                 <td>-</td>
-                <td>{{ $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai: '-' }}
-                </td>
+                <td>{{ $c1 }}</td>
+                <td>{{ $kategori_c1 }}</td>
             </tr>
         </table>
     </div>
@@ -85,6 +87,7 @@
                     <th>No</th>
                     <th>Kriteria</th>
                     <th>Nilai</th>
+                    <th>Kategori</th>
                 </tr>
             </thead>
             @foreach ($nilai_kriteria as $item)
@@ -92,6 +95,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item['nama_kriteria'] }}</td>
                     <td>{{ $item['nilai'] }}</td>
+                    <td>{{ $item['kategori'] }}</td>
                 </tr>
             @endforeach
         </table>
