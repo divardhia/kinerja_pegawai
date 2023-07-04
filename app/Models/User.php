@@ -14,8 +14,9 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     const ADMIN = '1';
-    const KEPALA = '2';
+    const PIMPINAN = '2';
     const PEGAWAI = '3';
+    const KEPALA = '4';
 
     /**
      * The attributes that are mass assignable.
@@ -65,9 +66,11 @@ class User extends Authenticatable
         if($this->role == '1'){
             return 'Admin';
         } else if($this->role == '2'){
-            return 'Kepala';
-        } else {
+            return 'Pimpinan';
+        } else if($this->role == '3'){
             return 'Pegawai';
+        } else {
+            return 'Kepala';
         }
     }
 

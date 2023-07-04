@@ -30,11 +30,11 @@
                             </thead>
                             <tbody>
                                 @foreach ($kegiatan as $item)
-                                <tr class="text-center">
+                                <tr class="text-justify">
                                     <td>{{ $item->kegiatan_kinerja }}</td>
                                     <td>{{ $item->target }}</td>
                                     <td>{{ $item->jabatan }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if (Auth::user()->role == '1')
                                         <a class="btn btn-primary" href="/kegiatan/{{ $item->id }}"> <i
                                                 class="fas fa-eye"></i> Detail </a>

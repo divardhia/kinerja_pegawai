@@ -40,7 +40,7 @@
                         <a class="nav-link menu-title " href="{{route('user.password.edit')}}"><i data-feather="user"></i><span>Change Password</span></a>
                     </li>
 
-                    @if (Auth::user()->role == '1' || Auth::user()->role == '2')
+                    @if (Auth::user()->role == '1' || Auth::user()->role == '2' || Auth::user()->role == '4')
                     <li class="sidebar-main-title">
                         <div>
                             <h6>Master</h6>
@@ -122,7 +122,7 @@
                     <li class="dropdown">
                         <a class="nav-link " href={{route('home')}}><i class="fas fa-fingerprint me-3"></i><span>Check Fingerprint</span></a>
                     </li> --}}
-                    @if (Auth::user()->role == 1 || Auth::user()->role == 2)
+                    @if (Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 4)
                     <li class="dropdown">
                         <a class="nav-link " href={{route('penilaian.index')}}><i
                             data-feather="database"></i><span>Penilaian</span></a>

@@ -32,7 +32,7 @@
                                         <th scope="col">Nilai Kinerja</th>
                                         <th scope="col">Orientasi Pelayanan</th>
                                         <th scope="col">Komitmen</th>
-                                        <th scope="col">Iniaiatif Kerja</th>
+                                        <th scope="col">Inisiatif Kerja</th>
                                         <th scope="col">Kerjasama</th>
                                     </tr>
                                 </thead>
@@ -90,7 +90,7 @@
                                         <th scope="col">Nilai Kinerja</th>
                                         <th scope="col">Orientasi Pelayanan</th>
                                         <th scope="col">Komitmen</th>
-                                        <th scope="col">Iniaiatif Kerja</th>
+                                        <th scope="col">Inisiatif Kerja</th>
                                         <th scope="col">Kerjasama</th>
                                     </tr>
                                 </thead>
@@ -188,7 +188,7 @@
                 "responsive": true,
                 "dom": 'Bfrtip',
                 "buttons": [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                    'copy', 'csv', 'excel', 'pdf'
                 ]
             });
         });

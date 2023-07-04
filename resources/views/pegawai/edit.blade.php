@@ -33,8 +33,9 @@
 
                                 <div class="col-md-6">
                                     <label class="form-label" for="nama_belakang">Nama Belakang</label>
-                                    <input type="nama_belakang" name="nama_belakang" class="form-control" id="nama_belakang" style="width: 95%"
-                                        aria-describedby="nama_belakang" value="{{ $pegawai->nama_belakang }}">
+                                    <input type="nama_belakang" name="nama_belakang" class="form-control" id="nama_belakang"
+                                        style="width: 95%" aria-describedby="nama_belakang"
+                                        value="{{ $pegawai->nama_belakang }}">
                                 </div>
                             </div>
                             <br>
@@ -42,8 +43,8 @@
                             <div class="row g-2">
                                 <div class="col-md-6">
                                     <label class="form-label" for="email">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" style="width: 95%"
-                                        aria-describedby="email" value="{{ $pegawai->user->email }}">
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        style="width: 95%" aria-describedby="email" value="{{ $pegawai->user->email }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label" for="jabatan">Jabatan</label>
@@ -59,7 +60,8 @@
                                             Pramubakti</option>
                                         <option @if ($pegawai->jabatan == 'Petugas Keamanan') selected @endif value="Petugas Keamanan">
                                             Petugas Keamanan</option>
-                                        <option @if ($pegawai->jabatan == 'Juru Pelihara Cagar Budaya') selected @endif value="Juru Pelihara Cagar Budaya">Juru
+                                        <option @if ($pegawai->jabatan == 'Juru Pelihara Cagar Budaya') selected @endif
+                                            value="Juru Pelihara Cagar Budaya">Juru
                                             Pelihara Cagar Budaya</option>
                                     </select>
                                 </div>
@@ -83,16 +85,27 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <button class="btn btn-primary" type="submit">Edit</button>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a class="btn btn-light" href="{{ route('pegawai.index') }}">Batal</a>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="status">Status</label>
+                                    <select type="status" name="status" class="form-control" id="status"
+                                        style="width: 95%" aria-describedby="status">
+                                        <option @if ($pegawai->status == true) selected @endif value="1">
+                                            Aktif</option>
+                                        <option @if ($pegawai->status == false) selected @endif value="0">
+                                            Tidak Aktif</option>
+                                    </select>
                                 </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <button class="btn btn-primary" type="submit">Edit</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-light" href="{{ route('pegawai.index') }}">Batal</a>
+                                </div>
+                            </div>
 
                         </form>
                     </div>
@@ -100,5 +113,5 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 @endsection

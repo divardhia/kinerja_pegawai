@@ -39,35 +39,35 @@ class PegawaiSeeder extends Seeder
             'nama_depan'        => 'Kepala',
             'nama_belakang'     => 'Operator',
             'id_user'           => 4, 
-            'jabatan'           => 'Pegawai',
+            'jabatan'           => 'Operator',
         ]);
 
         DB::table('pegawais')->insert([
             'nama_depan'        => 'Kepala',
             'nama_belakang'     => 'Pramubakti',
             'id_user'           => 5, 
-            'jabatan'           => 'Pegawai',
+            'jabatan'           => 'Pramubakti',
         ]);
 
         DB::table('pegawais')->insert([
             'nama_depan'        => 'Kepala',
             'nama_belakang'     => 'Pengemudi',
             'id_user'           => 6, 
-            'jabatan'           => 'Pegawai',
+            'jabatan'           => 'Pengemudi',
         ]);
 
         DB::table('pegawais')->insert([
             'nama_depan'        => 'Kepala',
             'nama_belakang'     => 'Keamanan',
             'id_user'           => 7, 
-            'jabatan'           => 'Pegawai',
+            'jabatan'           => 'Keamanan',
         ]);
 
         DB::table('pegawais')->insert([
             'nama_depan'        => 'Kepala Juru Pelihara',
             'nama_belakang'     => 'Cagar Budaya',
             'id_user'           => 8, 
-            'jabatan'           => 'Pegawai',
+            'jabatan'           => 'Juru Pelihara Cagar Budaya',
         ]);
     }
 }

@@ -23,27 +23,27 @@
                                 <thead class="bg-primary">
                                     <tr class="text-center">
                                         <th scope="col">Nama</th>
-                                        <th scope="col">C1</th>
-                                        <th scope="col">C2</th>
-                                        <th scope="col">C3</th>
-                                        <th scope="col">C4</th>
-                                        <th scope="col">C5</th>
-                                        @if (Auth::user()->role == '1')
-                                        <th scope="col" width="350px">Action</th>
+                                        <th scope="col">nilai Kinerja</th>
+                                        <th scope="col">Orientasi Pelayanan</th>
+                                        <th scope="col">Komitmen</th>
+                                        <th scope="col">Inisiatif Kerja</th>
+                                        <th scope="col">Kerja sama</th>
+                                        @if (Auth::user()->role == '1' || Auth::user()->role == '4')
+                                        <th class="text-center" scope="col" width="350px">Action</th>
                                         @endif  
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($pegawai as $item)
-                                        <tr class="text-center">
+                                        <tr class="text-justify">
                                             <td>{{ $item->nama_depan }} {{ $item->nama_belakang }}</td>
                                             <td>{{$item->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-"}}</td>
                                             <td>{{$item->pegawai_kriteria->where('id_kriteria', 2)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 2)->where('year', date('Y'))->first()->nilai : "-"}}</td>
                                             <td>{{$item->pegawai_kriteria->where('id_kriteria', 3)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 3)->where('year', date('Y'))->first()->nilai : "-"}}</td>
                                             <td>{{$item->pegawai_kriteria->where('id_kriteria', 4)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 4)->where('year', date('Y'))->first()->nilai : "-"}}</td>
                                             <td>{{$item->pegawai_kriteria->where('id_kriteria', 5)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 5)->where('year', date('Y'))->first()->nilai : "-"}}</td>
-                                            @if (Auth::user()->role == '1')
-                                            <a class="btn btn-primary" href="{{route('pegawai.nilai_kinerja', $item->id)}}"> Input Nilai</a>
+                                            @if (Auth::user()->role == '1' || Auth::user()->role == '4')
+                                            <td class="text-center"> <a class="btn btn-primary" href="{{route('pegawai.nilai_kinerja', $item->id)}}"> Input Nilai</a> </td>
                                             @endif
                                         </tr>
                                     @endforeach

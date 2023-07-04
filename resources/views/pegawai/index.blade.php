@@ -24,14 +24,16 @@
                                     <tr class="text-center">
                                         <th scope="col">Nama</th>
                                         <th scope="col">Jabatan</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col" width="350px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($pegawai as $item)
-                                        <tr class="text-center">
+                                        <tr class="text-justify">
                                             <td>{{ $item->nama_depan }} {{ $item->nama_belakang }}</td>
                                             <td>{{ $item->jabatan }}</td>
+                                            <td>{{ $item->status_name }}</td>
                                             <td>
                                                 @if (Auth::user()->role == '1')
                                                     <a class="btn btn-primary" href="/pegawai/{{ $item->id }}"> <i

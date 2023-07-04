@@ -41,4 +41,13 @@ class Pegawai extends Model
     {
         return $this->hasMany(PegawaiKegiatan::class, 'id_pegawai', 'id');
     }
+
+    public function getStatusNameAttribute()
+    {
+        if($this->status == true){
+            return 'Aktif';
+        } else {
+            return 'Tidak Aktif';
+        }
+    }
 }

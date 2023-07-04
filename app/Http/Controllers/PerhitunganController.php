@@ -21,7 +21,7 @@ class PerhitunganController extends Controller
         try {
             $jabatan = $request->jabatan;
             $year = $request->year;
-            $pegawai = Pegawai::where('jabatan', $jabatan)->get();
+            $pegawai = Pegawai::where([['jabatan', $jabatan], ['status', true]])->get();
 
             // cek kelengkapan nilai pegawai
             foreach ($pegawai as $p) {

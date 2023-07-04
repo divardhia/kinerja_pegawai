@@ -9,8 +9,8 @@ use App\Models\PegawaiKegiatan;
 use App\Models\PegawaiKriteria;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Svg\Tag\Rect;
 
 class PegawaiController extends Controller
 {
@@ -21,7 +21,13 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::all();
+        $jabatan = Pegawai::where('id_user', Auth::user()->id)->first()->jabatan;
+        if(Auth::user()->role == User::KEPALA){
+            $pegawai = Pegawai::where('jabatan', $jabatan)->get();
+        } else {
+            $pegawai = Pegawai::all();
+        }
+        
         return view('pegawai.index', compact('pegawai'));
     }
 
@@ -120,6 +126,7 @@ class PegawaiController extends Controller
         $pegawai->nama_depan = $request->get('nama_depan');
         $pegawai->nama_belakang = $request->get('nama_belakang') ?? "";
         $pegawai->jabatan = $request->get('jabatan');
+        $pegawai->status = $request->get('status');
         $pegawai->save();
 
         return redirect()->route('pegawai.index')

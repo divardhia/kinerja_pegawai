@@ -20,6 +20,7 @@ class CreatePegawaisTable extends Migration
             $table->string('nama_depan');
             $table->string("nama_belakang");
             $table->string("jabatan");
+            $table->boolean("status")->default(true);
             $table->timestamps();
         });
     }

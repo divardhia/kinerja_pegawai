@@ -16,7 +16,7 @@ class PenilaianController extends Controller
 {
     public function index()
     {
-        $pegawai = Pegawai::whereHas('user', function($q){
+        $pegawai = Pegawai::where('status', true)->whereHas('user', function($q){
             $q->where('role', User::PEGAWAI);
         })->get();
         return view('admin.penilaian.index', compact('pegawai'));
@@ -44,7 +44,7 @@ class PenilaianController extends Controller
         $year_now = date('Y');
         $user = Auth::user();
         $pegawai = Pegawai::where('id_user', $user->id)->first();
-        $pimpinan = User::where('role',User::KEPALA)->first();
+        $pimpinan = User::where('role',User::PIMPINAN)->first();
         $kegiatan = Kegiatan::where('jabatan', $pegawai->jabatan)->get();
         foreach ($kegiatan as $k) {
             $k->realisasi = PegawaiKegiatan::where([['id_pegawai', $pegawai->id], ['id_kegiatan', $k->id], ['year', $year_now]])->first() ? PegawaiKegiatan::where([['id_pegawai', $pegawai->id], ['id_kegiatan', $k->id], ['year', $year_now]])->first()->realisasi : "-";
