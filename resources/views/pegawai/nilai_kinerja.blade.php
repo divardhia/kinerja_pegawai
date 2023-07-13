@@ -39,7 +39,7 @@
                             <div class="table-responsive">
                                 <table class="table" id="example">
                                     <thead class="bg-primary">
-                                        <tr class="text-center">
+                                        <tr class="text-center text-bold">
                                             <th class="text-center">Kegiatan Kinerja</th>
                                             <th scope="col">Target</th>
                                             <th scope="col">Realisasi</th>
@@ -53,14 +53,16 @@
                                                 <td>{{ $item->target }}</td>
                                                 <td><input type="number" class="form-control" name="realisasi[]"
                                                         id="realisasi" value="{{ $item->realisasi ?? '' }}" required></td>
-                                                <td class="kategori-{{$loop->iteration}}"></td>
+                                                <td class="kategori-{{ $loop->iteration }}"></td>
                                             </tr>
                                         @endforeach
                                         <tr class="text-center">
-                                            <td>Nilai Akhir C1</td>
+                                            <td>Nilai Kinerja</td>
                                             <td>-</td>
-                                            <td id="c1">{{$pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-"}}</td>
-                                            <td class="kategori-{{count($kegiatan)+1}}"></td>
+                                            <td id="c1">
+                                                {{ $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai: '-' }}
+                                            </td>
+                                            <td class="kategori-{{ count($kegiatan) + 1 }}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -70,13 +72,13 @@
 
                             <div class="row g-2">
                                 <div class="col-md-6">
-                                    <label class="form-label" for="c2">C2</label>
+                                    <label class="form-label" for="c2">Orientasi Pelayanan</label>
                                     <input type="number" name="c2" class="form-control" id="c2"
                                         aria-describedby="c2" value="{{ $nilai_kriteria[0] }}" style="width: 95%">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label" for="kategori_c2">Kategori C2</label>
+                                    <label class="form-label" for="kategori_c2">Kategori Orientasi Pelayanan</label>
                                     <input type="text" name="kategori_c2" class="form-control" id="kategori_c2"
                                         aria-describedby="kategori_c2" disabled>
                                 </div>
@@ -85,13 +87,13 @@
 
                             <div class="row g-2">
                                 <div class="col-md-6">
-                                    <label class="form-label" for="c3">C3</label>
-                                    <input type="number" name="c3" class="form-control" id="c3" style="width: 95%"
-                                        aria-describedby="c3" value="{{ $nilai_kriteria[1] }}">
+                                    <label class="form-label" for="c3">Komitmen</label>
+                                    <input type="number" name="c3" class="form-control" id="c3"
+                                        style="width: 95%" aria-describedby="c3" value="{{ $nilai_kriteria[1] }}">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label" for="kategori_c3">Kategori C3</label>
+                                    <label class="form-label" for="kategori_c3">Kategori Komitmen</label>
                                     <input type="text" name="kategori_c3" class="form-control" id="kategori_c3"
                                         aria-describedby="kategori_c3" disabled>
                                 </div>
@@ -100,13 +102,13 @@
 
                             <div class="row g-2">
                                 <div class="col-md-6">
-                                    <label class="form-label" for="c4">C4</label>
+                                    <label class="form-label" for="c4">Inisiatif Kerja</label>
                                     <input type="number" name="c4" class="form-control" id="c4"
                                         aria-describedby="c4" value="{{ $nilai_kriteria[2] }}" style="width: 95%">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label" for="kategori_c4">Kategori C4</label>
+                                    <label class="form-label" for="kategori_c4">Kategori Inisiatif Kerja</label>
                                     <input type="text" name="kategori_c4" class="form-control" id="kategori_c4"
                                         aria-describedby="kategori_c4" disabled>
                                 </div>
@@ -115,13 +117,13 @@
 
                             <div class="row g-2">
                                 <div class="col-md-6">
-                                    <label class="form-label" for="c5">C5</label>
-                                    <input type="number" name="c5" class="form-control" id="c5" style="width: 95%"
-                                        aria-describedby="c5" value="{{$nilai_kriteria[3]}}">
+                                    <label class="form-label" for="c5">Kerja Sama</label>
+                                    <input type="number" name="c5" class="form-control" id="c5"
+                                        style="width: 95%" aria-describedby="c5" value="{{ $nilai_kriteria[3] }}">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label" for="kategori_c5">Kategori C5</label>
+                                    <label class="form-label" for="kategori_c5">Kategori Kerja Sama</label>
                                     <input type="text" name="kategori_c5" class="form-control" id="kategori_c5"
                                         aria-describedby="kategori_c5" disabled>
                                 </div>
@@ -141,14 +143,14 @@
 @push('js')
     <script>
         // function untuk rentang penilaian
-        const rentang_penilaian = (nilai) =>{
-            if(nilai >= 101 && nilai <= 110){
+        const rentang_penilaian = (nilai) => {
+            if (nilai >= 101 && nilai <= 110) {
                 return 'Sangat Baik';
-            } else if(nilai >= 90 && nilai <= 100) {
+            } else if (nilai >= 90 && nilai <= 100) {
                 return 'Baik';
-            } else if(nilai >= 80 && nilai <= 89) {
+            } else if (nilai >= 80 && nilai <= 89) {
                 return 'Cukup';
-            } else if(nilai >= 60 && nilai <= 79) {
+            } else if (nilai >= 60 && nilai <= 79) {
                 return 'Kurang';
             } else {
                 return 'Sangat Kurang';
@@ -174,7 +176,7 @@
         });
 
         // function get realisasi array
-        const array_realisasi = () =>{
+        const array_realisasi = () => {
             var realisasi = $('input[name="realisasi[]"]').map(function() {
                 return $(this).val();
             }).get();
@@ -182,7 +184,7 @@
         }
 
         // function hitung nilai c1
-        const hitungC1 = () =>{
+        const hitungC1 = () => {
             var realisasi = array_realisasi();
             var total = 0;
             var jumlahElemen = realisasi.length;
@@ -205,21 +207,21 @@
         const setKategoriRealisasi = () => {
             var realisasi = array_realisasi();
             for (let index = 0; index < realisasi.length; index++) {
-                var i = index+1;
+                var i = index + 1;
                 var className = ".kategori-" + i;
                 $(className).text(rentang_penilaian(realisasi[index]));
             }
         }
 
         // function untuk set kategori kriteria
-        const setKategoriC = () =>{
+        const setKategoriC = () => {
             for (let index = 2; index <= 5; index++) {
-                var c = $('#c'+index).val();
-                $('#kategori_c'+index).val(rentang_penilaian(c));
+                var c = $('#c' + index).val();
+                $('#kategori_c' + index).val(rentang_penilaian(c));
             }
         }
-        
-        $(document).ready(function(){
+
+        $(document).ready(function() {
             // set awal kategori realisasi dan c1
             setKategoriRealisasi();
             var realisasi = array_realisasi();
@@ -232,17 +234,16 @@
         });
 
         // saat nilai realisasi diubah
-        $('input[name="realisasi[]"]').on('keyup', function(){
+        $('input[name="realisasi[]"]').on('keyup', function() {
             setKategoriRealisasi();
             hitungC1();
         });
 
         // saat nilai kriteria diubah
         for (let index = 2; index <= 5; index++) {
-            $('#c'+index).on('keyup', function(){
+            $('#c' + index).on('keyup', function() {
                 setKategoriC();
             });
         }
-        
     </script>
 @endpush
