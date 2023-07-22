@@ -69,6 +69,11 @@
                         <br>
 
                         <h4>Nilai Semua Kriteria</h4>
+                        <hr>
+                        <span>
+                            Target Nilai = 90% - 100%
+                        </span>
+                        <hr>
                         <div class="table-responsive">
                             <table class="table" id="nilai">
                                 <thead class="bg-primary">
