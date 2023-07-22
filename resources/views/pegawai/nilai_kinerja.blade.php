@@ -10,16 +10,6 @@
                         Nama Pegawai : {{ $pegawai->user->name }}
                     </span>
                     <span>Jabatan : {{ $pegawai->jabatan }}</span>
-                    <hr>
-                    <span>
-                        Keterangan kriteria penilaian <br>
-                        C1 = Nilai Kinerja <br>
-                        C2 = Orientasi Pelayanan <br>
-                        C3 = Komitmen <br>
-                        C4 = Inisiatif Kerja <br>
-                        C5 = Kerja sama <br>
-                    </span>
-                    <hr>
                 </div>
                 <input type="hidden" name="id_pegawai" id="id_pegawai" value="{{ $pegawai->id }}">
 
@@ -69,6 +59,12 @@
                             </div>
                             <hr>
                             <br>
+
+                            <hr>
+                            <span>
+                                Target Kriteria = 90% - 100%
+                            </span>
+                            <hr>
 
                             <div class="row g-2">
                                 <div class="col-md-6">
