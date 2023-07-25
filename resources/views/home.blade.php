@@ -26,12 +26,26 @@
                             yaitu hasil kerja, orientasi pelayanan, komitmen, inisiatif kerja, dan kerja sama. penilaian
                             dikelompokkan sesuai dengan jabatan masing-masing.
                         </div>
-                        @if (Auth::user()->role == '1' || Auth::user()->role == '4' || Auth::user()->role == '2')
+                        @if (Auth::user()->role == '1' || Auth::user()->role == '2')
                             <div class="row mb-5">
                                 Alur Sistem:
                                 <center><img src="{{ asset('images/alur-program.png') }}" alt=""></center>
                             </div>
                             <div class="row mb-5">
+                            @elseif (Auth::user()->role == '4')
+                                <div class="row mb-5">
+                                    Alur Sistem:
+                                    <center><img src="{{ asset('images/alur-program-penilai.png') }}" alt="">
+                                    </center>
+                                </div>
+                                <div class="row mb-5">
+                                @else
+                                    <div class="row mb-5">
+                                        Alur:
+                                        <center><img src="{{ asset('images/alur-program-pegawai.png') }}" alt="">
+                                        </center>
+                                    </div>
+                                    <div class="row mb-5">
                         @endif
 
                         Rentang Nilai:
