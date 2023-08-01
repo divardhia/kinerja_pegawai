@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
 
         // penilaian
         Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
+        Route::get('/penilaian/pegawai', [PenilaianController::class, 'penilaian'])->name('penilaian.nilai');
 
         // perhitungan
         Route::get('/perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan.index');

@@ -149,9 +149,9 @@ class PegawaiController extends Controller
             ->with('success');
     }
 
-    public function nilai_kinerja($id)
+    public function nilai_kinerja(Request $request, $id)
     {
-        $year_now = date('Y');
+        $year_now = $request->year;
         $pegawai = Pegawai::find($id);
         $kegiatan = Kegiatan::where('jabatan', $pegawai->jabatan)->get();
         foreach ($kegiatan as $k) {
@@ -159,15 +159,15 @@ class PegawaiController extends Controller
         }
         $nilai_kriteria = array();
         for ($i = 2; $i <= 5; $i++) {
-            $c = $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', date('Y'))->first()->nilai : "";
+            $c = $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', $year_now)->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', $year_now)->first()->nilai : "";
             array_push($nilai_kriteria, $c);
         }
-        return view('pegawai.nilai_kinerja', compact('pegawai', 'kegiatan', 'nilai_kriteria'));
+        return view('pegawai.nilai_kinerja', compact('pegawai', 'kegiatan', 'nilai_kriteria', 'year_now'));
     }
 
     public function store_nilai_kinerja(StoreNilaiRequest $request)
     {
-        $year_now = date('Y');
+        $year_now = $request->year;
         $pegawai = Pegawai::find($request->id_pegawai);
         $kegiatan = Kegiatan::where('jabatan', $pegawai->jabatan)->pluck('id')->toArray();
         $realisasi = $request->realisasi;
@@ -200,7 +200,7 @@ class PegawaiController extends Controller
             $pegawai_kriteria->save();
         }
 
-        return redirect()->route('pegawai.nilai_kinerja', $pegawai->id)
+        return redirect()->route('pegawai.nilai_kinerja', ['id'=>$pegawai->id,'year'=>$year_now])
             ->with('success', 'Nilai berhasil diinput');
     }
 }

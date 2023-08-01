@@ -1,74 +1,58 @@
 @extends('layouts.app')
+@section('styles')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+@endsection
 @section('content')
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header pb-0">
-                <h5>Table Penilaian</h5>
-                <span>
-                    Berisi data Nilai Pegawai, dimana... <br> 
-                    C1 = Nilai Kinerja <br>
-                    C2 = Orientasi Pelayanan <br>
-                    C3 = Komitmen <br>
-                    C4 = Inisiatif Kerja <br>
-                    C5 = Kerja sama <br>
-                </span>
-                <hr>
-            </div>
-
-            <div class="card-body">
-                <div class="card-block row">
-                    <div class="col-sm-12 col-lg-12 col-xl-12">
-                        <div class="table-responsive">
-                            <table class="table" id="example">
-                                <thead class="bg-primary">
-                                    <tr class="text-center">
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">nilai Kinerja</th>
-                                        <th scope="col">Orientasi Pelayanan</th>
-                                        <th scope="col">Komitmen</th>
-                                        <th scope="col">Inisiatif Kerja</th>
-                                        <th scope="col">Kerja sama</th>
-                                        @if (Auth::user()->role == '1' || Auth::user()->role == '4')
-                                        <th class="text-center" scope="col" width="350px">Action</th>
-                                        @endif  
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($pegawai as $item)
-                                        <tr class="text-justify">
-                                            <td>{{ $item->nama_depan }} {{ $item->nama_belakang }}</td>
-                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-"}}</td>
-                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 2)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 2)->where('year', date('Y'))->first()->nilai : "-"}}</td>
-                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 3)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 3)->where('year', date('Y'))->first()->nilai : "-"}}</td>
-                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 4)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 4)->where('year', date('Y'))->first()->nilai : "-"}}</td>
-                                            <td>{{$item->pegawai_kriteria->where('id_kriteria', 5)->where('year', date('Y'))->first() ? $item->pegawai_kriteria->where('id_kriteria', 5)->where('year', date('Y'))->first()->nilai : "-"}}</td>
-                                            @if (Auth::user()->role == '1' || Auth::user()->role == '4')
-                                            <td class="text-center"> <a class="btn btn-primary" href="{{route('pegawai.nilai_kinerja', $item->id)}}"> Input Nilai</a> </td>
-                                            @endif
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-sm-6">
+                <div class="card mt-3">
+                    <div class="card-header pb-0">
+                        <h5>Penilaian Pegawai</h5>
                     </div>
+                    <div class="card-body">
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form class="needs-validation" action="{{ route('penilaian.nilai') }}" method="get"
+                            enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label class="form-label" for="year">Year</label>
+                                <input type="text" name="year" class="form-control" id="year"
+                                    aria-describedby="year" required>
+                            </div>
+                            <br>
+
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
                 </div>
             </div>
+            <div class="col-md-3"></div>
         </div>
+    </div>
     </div>
 @endsection
 
 @push('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $(function() {
-            $('#example').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": false,
-                "autoWidth": false,
-                "responsive": true,
-            });
+         $("#year").datepicker( {
+            format: "yyyy",
+            startView: "years", 
+            minViewMode: "years"
         });
     </script>
 @endpush

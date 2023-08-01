@@ -3,6 +3,7 @@
     <div class="col-sm-12">
         <form class="needs-validation" action="{{ route('pegawai.nilai_kinerja.store') }}" method="post">
             @csrf
+            <input type="hidden" name="year" id="year" value="{{$year_now}}">
             <div class="card">
                 <div class="card-header pb-0">
                     <h5>Input Nilai Kinerja</h5>
@@ -10,6 +11,7 @@
                         Nama Pegawai : {{ $pegawai->user->name }}
                     </span>
                     <span>Jabatan : {{ $pegawai->jabatan }}</span>
+                    <span>Tahun : {{$year_now}}</span>
                 </div>
                 <input type="hidden" name="id_pegawai" id="id_pegawai" value="{{ $pegawai->id }}">
 

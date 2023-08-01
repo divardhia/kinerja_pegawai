@@ -15,7 +15,13 @@ use Illuminate\Support\Facades\Auth;
 class PenilaianController extends Controller
 {
     public function index()
+    {   
+        return view('admin.penilaian.index');
+    }
+
+    public function penilaian(Request $request)
     {
+        $year = $request->year;
         $jabatan = Pegawai::where('id_user', Auth::user()->id)->first()->jabatan;
         if(Auth::user()->role == User::KEPALA){
             $pegawai = Pegawai::where([['status', true], ['jabatan', $jabatan]])->whereHas('user', function($q){
@@ -27,7 +33,7 @@ class PenilaianController extends Controller
             })->get();
         }
         
-        return view('admin.penilaian.index', compact('pegawai'));
+        return view('admin.penilaian.penilaian', compact('pegawai', 'year'));
     }
 
     public function index_hasil_pegawai()
