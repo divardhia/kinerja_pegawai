@@ -8,6 +8,7 @@
                     Nama Pegawai : {{ $pegawai->user->name }}
                 </span>
                 <span>Jabatan : {{ $pegawai->jabatan }}</span>
+                <span>Tahun : {{$year_now}}</span>
                 <hr>
                 <span>
                     Keterangan kriteria penilaian <br>
@@ -58,7 +59,7 @@
                                         <td>Nilai Akhir Kinerja</td>
                                         <td>-</td>
                                         <td id="c1">
-                                            {{ $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai: '-' }}
+                                            {{ $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', $year_now)->first()? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', $year_now)->first()->nilai: '-' }}
                                         </td>
                                         <td id="kategori_c1"></td>
                                     </tr>
@@ -98,7 +99,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{{ route('cetak.nilai.pegawai') }}" class="btn btn-primary">Cetak</a>
+                <a href="{{ route('cetak.nilai.pegawai', ['year'=>$year_now]) }}" class="btn btn-primary">Cetak</a>
             </div>
         </div>
     </div>

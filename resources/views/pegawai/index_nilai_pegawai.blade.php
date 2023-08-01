@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 <div class="card mt-3">
                     <div class="card-header pb-0">
-                        <h5>Perhitungan Moora</h5>
+                        <h5>Nilai Pegawai</h5>
                     </div>
                     <div class="card-body">
 
@@ -24,25 +24,9 @@
                             </div>
                         @endif
 
-                        <form class="needs-validation" action="{{ route('perhitungan.hasil') }}" method="get"
+                        <form class="needs-validation" action="{{ route('user.nilai.pegawai.hasil') }}" method="get"
                             enctype="multipart/form-data">
                             @csrf
-                            <div class="mb-3">
-                                <label class="form-label" for="jabatan">Jabatan</label>
-                                <select type="jabatan" name="jabatan" class="form-control" id="jabatan"
-                                    aria-describedby="jabatan" required>
-                                    @if (Auth::user()->role == '1' || Auth::user()->role == '2')
-                                    <option value="Operator">Operator</option>
-                                    <option value="Pramubakti">Pramubakti</option>
-                                    <option value="Pengemudi">Pengemudi</option>
-                                    <option value="Petugas Keamanan">Petugas Keamanan</option>
-                                    <option value="Juru Pelihara Cagar Budaya">Juru Pelihara Cagar Budaya</option>
-                                    @else
-                                        <option selected value="{{$pegawai->jabatan}}">{{$pegawai->jabatan}}</option>
-                                    @endif
-                                </select>
-                            </div>
-                            <br>
 
                             <div class="mb-3">
                                 <label class="form-label" for="year">Year</label>

@@ -55,7 +55,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // nilai pegawai
-    Route::get('/nilai/pegawai', [PenilaianController::class, 'nilai_pegawai'])->name('user.nilai.pegawai');
+    Route::get('/nilai/pegawai', [PenilaianController::class, 'index_nilai_pegawai'])->name('user.nilai.pegawai');
+    Route::get('/nilai/pegawai/hasil', [PenilaianController::class, 'nilai_pegawai'])->name('user.nilai.pegawai.hasil');
     Route::get('/nilai/index', [PenilaianController::class, 'index_hasil_pegawai'])->name('pegawai.nilai.index');
     Route::get('/nilai/hasil', [PenilaianController::class, 'hasil_nilai_pegawai'])->name('pegawai.nilai.hasil');
     Route::get('/cetak/nilai/pegawai', [PenilaianController::class, 'cetak_nilai_pegawai'])->name('cetak.nilai.pegawai');

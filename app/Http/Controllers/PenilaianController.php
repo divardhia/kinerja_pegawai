@@ -53,9 +53,9 @@ class PenilaianController extends Controller
         }
     }
 
-    public function cetak_nilai_pegawai()
+    public function cetak_nilai_pegawai(Request $request)
     {
-        $year_now = date('Y');
+        $year_now = $request->year;
         $user = Auth::user();
         $pegawai = Pegawai::where('id_user', $user->id)->first();
         $pimpinan = User::where('role',User::PIMPINAN)->first();
@@ -69,7 +69,7 @@ class PenilaianController extends Controller
         $nilai_kriteria = [];
         $kriteria = Kriteria::pluck('nama_kriteria')->toArray();
         for ($i = 1; $i <= 5; $i++) {
-            $nilai = $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-";
+            $nilai = $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', $year_now)->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', $year_now)->first()->nilai : "-";
             $nilai_c = $nilai == "-" ? 0 : $nilai;
             $nilai_kriteria[] = [
                 'nama_kriteria' => $kriteria[$i-1],
@@ -78,7 +78,7 @@ class PenilaianController extends Controller
             ];
         }
         // data c1
-        $c1 = $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai: '-';
+        $c1 = $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', $year_now)->first()? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', $year_now)->first()->nilai: '-';
         $nilai_c1 = $c1 == "-" ? 0 : $c1;
         $kategori_c1 = $this->rentang_penilaian($nilai_c1);
 
@@ -104,9 +104,14 @@ class PenilaianController extends Controller
         }
     }
 
-    public function nilai_pegawai()
+    public function index_nilai_pegawai()
     {
-        $year_now = date('Y');
+        return view('pegawai.index_nilai_pegawai');
+    }
+
+    public function nilai_pegawai(Request $request)
+    {
+        $year_now = $request->year;
         $user = Auth::user();
         $pegawai = Pegawai::where('id_user', $user->id)->first();
         $kegiatan = Kegiatan::where('jabatan', $pegawai->jabatan)->get();
@@ -119,7 +124,7 @@ class PenilaianController extends Controller
         $nilai_kriteria = [];
         $kriteria = Kriteria::pluck('nama_kriteria')->toArray();
         for ($i = 1; $i <= 5; $i++) {
-            $nilai = $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', date('Y'))->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', date('Y'))->first()->nilai : "-";
+            $nilai = $pegawai->pegawai_kriteria->where('id_kriteria', $i)->where('year', $year_now)->first() ? $pegawai->pegawai_kriteria->where('id_kriteria', 1)->where('year', $year_now)->first()->nilai : "-";
             $nilai_c = $nilai == "-" ? 0 : $nilai;
             $nilai_kriteria[] = [
                 'nama_kriteria' => $kriteria[$i-1],
@@ -127,6 +132,6 @@ class PenilaianController extends Controller
                 'kategori' => $this->rentang_penilaian($nilai_c)
             ];
         }
-        return view('pegawai.nilai_pegawai', compact('pegawai', 'kegiatan', 'nilai_kriteria'));
+        return view('pegawai.nilai_pegawai', compact('pegawai', 'kegiatan', 'nilai_kriteria', 'year_now'));
     }
 }
